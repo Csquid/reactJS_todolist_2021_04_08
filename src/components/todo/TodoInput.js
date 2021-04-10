@@ -17,14 +17,19 @@ class TodoInput extends Component {
       todoInputTextElement: document.querySelector('.add-todo input[type="text"]')
     });
   }
-  // componentDidUpdate() {
-  //   return true;
-  // }
+  
   render() {
+    console.log('Add render');
+    
+    
     return (
       <div className="add-todo">
         <input type="text" placeholder="Todo" />
         <input type="button" value="add" onClick={()=> {
+          if(this.state.todoInputTextElement.value === '') {
+            alert("You Can't add empty data.");
+            return;
+          }
           console.log(this.state.todoInputTextElement.value);
         }}/>
       </div>

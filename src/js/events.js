@@ -11,7 +11,6 @@ export function initTodoListEvents(itemContainerElements) {
 
     const todoObjectKeys = Object.keys(todoElementOBJ);
 
-    console.log(todoElementsChildren);
     for(let j = 0; j < todoObjectKeys.length; j++) {
       todoElementOBJ[todoObjectKeys[j]] = todoElementsChildren[j];
     }

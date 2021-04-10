@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from 'components/Header';
-import Add from 'components/todo/Add';
-import List from 'components/todo/List';
+import Add from 'components/todo/TodoInput';
+import List from 'components/todo/TodoList';
 import * as util from 'js/util';
 import 'css/App.css';
 
@@ -17,10 +17,15 @@ class App extends Component {
       // todolist
     }
   }
+  
+  init() {
 
+  }
   render() {
-    util.init();
-    console.log(util.loadLocalStorageTodoList());
+    console.log('Root render');
+    
+    // init
+    this.init();
     
     return (
       <div className="App">
