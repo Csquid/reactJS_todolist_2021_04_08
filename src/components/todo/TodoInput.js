@@ -13,13 +13,14 @@ class TodoInput extends Component {
     DOM 노드가 있어야 하는 초기화 작업은 이 메서드에서 이루어지면 됩니다
   */
   componentDidMount() {
+    console.log('TodoAdd ComponentDidMount');
     this.setState({
       todoInputTextElement: document.querySelector('.add-todo input[type="text"]')
     });
   }
   
   render() {
-    console.log('Add render');
+    console.log('TodoInput render');
     
     
     return (

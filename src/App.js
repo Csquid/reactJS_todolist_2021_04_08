@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Header from 'components/Header';
+import Header from 'components/TodoHeader';
 import Add from 'components/todo/TodoInput';
 import List from 'components/todo/TodoList';
 import * as util from 'js/util';
@@ -8,31 +8,35 @@ import 'css/App.css';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
-      todolist: [
-        {id: 0, text: '11', check: true},
-        {id: 1, text: '22', check: false},
-        {id: 2, text: '33', check: false}
-      ],
+    this.state = {
+      //Local Storage todolist 
+      todolistLS: util.loadLocalStorageTodoList().todolist,
+      todolistLastIDX: util.loadLocalStorageTodoList().todolistLastIDX
       // todolist
-    }
+    } 
   }
-  
-  init() {
+  // componentDidMount() {
+  //   const lsData = util.loadLocalStorageTodoList();
 
-  }
+  //   this.setState({
+  //     todolistLS: lsData
+  //   })
+  //   console.log(lsData);
+  // }
+  // init = () => {
+  // }
   render() {
     console.log('Root render');
     
     // init
-    this.init();
+    // this.init();
     
     return (
       <div className="App">
         <div className="floating-box">
           <Header title="Todos"></Header>
           <Add></Add>
-          <List lists={this.state.todolist}></List>
+          <List lists={this.state.todolistLS}></List>
         </div>
       </div>
     );

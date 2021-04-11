@@ -1,33 +1,41 @@
 import React, { Component } from 'react';
-import * as events from "js/events.js";
-import * as read from 'js/read';
+import * as events from "js/events";
+import * as read   from 'js/read';
 class TodoLists extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-
+      lists: []
     }
   }
   componentDidMount() {
-    const itemContainerElements = document.querySelectorAll(".item-container");
-
-    this.setState({
-      todoInputTextElement: document.querySelector('.add-todo input[type="text"]')
-    });
-    
-    events.initTodoListEvents(itemContainerElements);
-  }
-  render() { 
+    console.log('TodoList ComponentDidMount');
+    // let itemContainerElements = document.querySelectorAll(".item-container");
     const datas = this.props.lists;
-    const lists = [];
+    const todosArray = [];
     
     for(let i = 0; i < datas.length; i++) {
-      lists.push (read.getTodoListElement(datas[i]));
+      todosArray.push (read.getTodoListElement(datas[i]));
     }
-    
+
+    this.setState({
+      lists: todosArray
+    });
+
+    // itemContainerElements = document.querySelectorAll(".item-container");
+    // events.initTodoListEvents(itemContainerElements);
+  }
+  
+  render() { 
+    console.log('TodoList render');
+
+    // let itemContainerElements = document.querySelectorAll(".item-container");
+    // events.initTodoListEvents(itemContainerElements);
+
+    console.log(document.querySelectorAll(".item-container"));
     return ( 
       <div className="item-content">
-        {lists}
+        {this.state.lists}
       </div>
     );
   }

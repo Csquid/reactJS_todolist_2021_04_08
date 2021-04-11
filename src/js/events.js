@@ -1,5 +1,6 @@
 // 이벤트를 모아놓은 함수 이다.
 export function initTodoListEvents(itemContainerElements) {
+  console.log(itemContainerElements);
   for(let i = 0; i < itemContainerElements.length; i++) {
     const todoElementsChildren = itemContainerElements[i].children;
     const todoElementOBJ = {
