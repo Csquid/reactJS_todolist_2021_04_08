@@ -15,28 +15,19 @@ class App extends Component {
       // todolist
     } 
   }
-  // componentDidMount() {
-  //   const lsData = util.loadLocalStorageTodoList();
-
-  //   this.setState({
-  //     todolistLS: lsData
-  //   })
-  //   console.log(lsData);
-  // }
-  // init = () => {
-  // }
   render() {
     console.log('Root render');
-    
-    // init
-    // this.init();
+    util.init();
     
     return (
       <div className="App">
         <div className="floating-box">
           <Header title="Todos"></Header>
           <Add></Add>
-          <List lists={this.state.todolistLS}></List>
+          <List lists={this.state.todolistLS} deleteList={(idx) => {
+            console.log('App deleteList Function');
+            console.log('idx', idx);
+          }}></List>
         </div>
       </div>
     );

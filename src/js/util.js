@@ -14,7 +14,7 @@ export function init() {
 }
 export function initTodolistLastIDX(lsData) {
     if(lsData) {
-    //   todolistLastIDX = lsData.todolistLastIDX;
+      // todolistLastIDX = lsData.todolistLastIDX;
       // debugger;
       return;
     }

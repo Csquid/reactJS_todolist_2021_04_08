@@ -1,3 +1,14 @@
+export function getListElement(datas, props) {
+  console.log(props);
+  const todosArray = [];
+  
+  for(let i = 0; i < datas.length; i++) {
+    todosArray.push (getTodoListElement(datas[i]));
+  }
+
+  return todosArray;
+}
+
 export function getTodoListElement(todoOBJ) {
   let checkStr = 'todo-text';
   let deleteDisplay = '';

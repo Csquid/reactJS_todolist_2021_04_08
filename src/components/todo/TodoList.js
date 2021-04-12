@@ -5,34 +5,20 @@ class TodoLists extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      lists: []
+      lists: read.getListElement(this.props.lists, this.props)
     }
   }
+  
   componentDidMount() {
     console.log('TodoList ComponentDidMount');
-    // let itemContainerElements = document.querySelectorAll(".item-container");
-    const datas = this.props.lists;
-    const todosArray = [];
-    
-    for(let i = 0; i < datas.length; i++) {
-      todosArray.push (read.getTodoListElement(datas[i]));
-    }
+    const itemContainerElements = document.querySelectorAll(".item-container");
 
-    this.setState({
-      lists: todosArray
-    });
-
-    // itemContainerElements = document.querySelectorAll(".item-container");
-    // events.initTodoListEvents(itemContainerElements);
+    events.initTodoListEvents(itemContainerElements);
   }
   
   render() { 
     console.log('TodoList render');
 
-    // let itemContainerElements = document.querySelectorAll(".item-container");
-    // events.initTodoListEvents(itemContainerElements);
-
-    console.log(document.querySelectorAll(".item-container"));
     return ( 
       <div className="item-content">
         {this.state.lists}

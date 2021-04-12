@@ -22,7 +22,6 @@ class TodoInput extends Component {
   render() {
     console.log('TodoInput render');
     
-    
     return (
       <div className="add-todo">
         <input type="text" placeholder="Todo" />
