@@ -1,30 +1,39 @@
 import React, { Component } from 'react';
-import * as events from "js/events";
-import * as read   from 'js/read';
+import PropTypes from 'prop-types';
+import { events, read, util } from 'js/modules';
+
 class TodoLists extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { 
-      lists: read.getListElement(this.props.lists, this.props)
-    }
-  }
-  
   componentDidMount() {
     console.log('TodoList ComponentDidMount');
-    const itemContainerElements = document.querySelectorAll(".item-container");
+    if (!util.hasLsTodos()) { return; }
 
-    events.initTodoListEvents(itemContainerElements);
+    const ItemContainerElements = document.querySelectorAll('.item-container');
+
+    events.initTodoListEvents(ItemContainerElements);
   }
-  
-  render() { 
+
+  render() {
+    const { lists, deleteListFunc } = this.props;
+    const getLists = read.getListElement(lists, deleteListFunc);
+    console.log(this.props);
     console.log('TodoList render');
 
-    return ( 
+    return (
       <div className="item-content">
-        {this.state.lists}
+        {getLists}
       </div>
     );
   }
 }
- 
+
+TodoLists.propTypes = {
+  lists: PropTypes.objectOf(
+    PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.array,
+    ]),
+  ).isRequired,
+  deleteListFunc: PropTypes.func.isRequired,
+};
+
 export default TodoLists;
