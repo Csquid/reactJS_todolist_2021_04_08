@@ -7,17 +7,18 @@ class TodoInput extends Component {
     this.state = {};
     this.addClicked = (todoInputTextElement) => {
       const { createTodo } = this.props;
-      console.log(todoInputTextElement);
+      const todoInputTemp = todoInputTextElement;
+      // console.log(todoInputTemp);
 
-      if (todoInputTextElement.value === '') {
+      if (todoInputTemp.value === '') {
         alert("You Can't add empty data.");
 
         return;
       }
 
-      createTodo(todoInputTextElement.value);
+      createTodo(todoInputTemp.value);
 
-      // todoInputTextElement.value = '';
+      todoInputTemp.value = '';
     };
   }
 
@@ -30,14 +31,19 @@ class TodoInput extends Component {
   }
 
   render() {
-    const todoInputTextElement = document.querySelector('.add-todo input[type="text"]');
-
     console.log('TodoInput render');
 
     return (
       <div className="add-todo">
         <input type="text" placeholder="Todos" />
-        <input type="button" value="add" onClick={this.addClicked(todoInputTextElement)} />
+        <input
+          type="button"
+          value="add"
+          onClick={() => {
+            const todoInputTextElement = document.querySelector('.add-todo input[type="text"]');
+            this.addClicked(todoInputTextElement);
+          }}
+        />
       </div>
     );
   }

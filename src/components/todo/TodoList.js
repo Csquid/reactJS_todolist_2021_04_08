@@ -3,13 +3,27 @@ import PropTypes from 'prop-types';
 import { events, read, util } from 'js/modules';
 
 class TodoLists extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+    this.setEvent = () => {
+      if (!util.hasLsTodos()) { return; }
+
+      const ItemContainerElements = document.querySelectorAll('.item-container');
+
+      events.initTodoListEvents(ItemContainerElements);
+    };
+  }
+
   componentDidMount() {
     console.log('TodoList ComponentDidMount');
-    if (!util.hasLsTodos()) { return; }
+    this.setEvent();
+  }
 
-    const ItemContainerElements = document.querySelectorAll('.item-container');
-
-    events.initTodoListEvents(ItemContainerElements);
+  componentDidUpdate() {
+    console.log('TodoList ComponentDidUpdate');
+    this.setEvent();
   }
 
   render() {
@@ -27,13 +41,14 @@ class TodoLists extends Component {
 }
 
 TodoLists.propTypes = {
+  deleteListFunc: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/require-default-props
   lists: PropTypes.objectOf(
     PropTypes.oneOfType([
-      PropTypes.number,
       PropTypes.array,
+      PropTypes.number,
     ]),
-  ).isRequired,
-  deleteListFunc: PropTypes.func.isRequired,
+  ),
 };
 
 export default TodoLists;

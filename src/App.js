@@ -21,21 +21,29 @@ class App extends Component {
       console.log('App deleteList Function');
       console.log('idx', idx);
     };
+
+    this.createTodo = (todoText) => {
+      console.log(create.todos(todoText));
+
+      this.setState({
+        todolistLS: util.loadLocalStorageTodoList(),
+      });
+
+      // eslint-disable-next-line no-debugger
+      debugger;
+    };
   }
 
   componentDidMount() {
     console.log('Root ComponentDidMount');
   }
 
-  createTodo(todoText) {
-    this.setState({
-      todolistLS: create.todos(todoText),
-    });
-  }
-
   render() {
     console.log('Root render');
     const { todolistLS } = this.state;
+    console.log(todolistLS);
+    console.log(util.loadLocalStorageTodoList());
+    // this.init();
 
     return (
       <div className="App">
