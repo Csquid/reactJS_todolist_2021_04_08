@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from 'components/TodoHeader';
 import Add from 'components/todo/TodoInput';
 import List from 'components/todo/TodoList';
-import { create, util } from 'js/modules';
+import { create, deleteF, util } from 'js/modules';
 import 'css/App.css';
 
 class App extends Component {
@@ -10,7 +10,7 @@ class App extends Component {
     super(props);
     this.state = {
       // Local Storage todolist
-      todolistLS: util.loadLocalStorageTodoList(),
+      todolistLS: null,
     };
 
     this.init = () => {
@@ -18,31 +18,33 @@ class App extends Component {
     };
 
     this.deleteList = (idx) => {
-      console.log('App deleteList Function');
-      console.log('idx', idx);
+      console.log(idx);
+      deleteF.todos(idx);
     };
 
     this.createTodo = (todoText) => {
-      console.log(create.todos(todoText));
-
       this.setState({
-        todolistLS: util.loadLocalStorageTodoList(),
+        todolistLS: create.todos(todoText),
       });
 
       // eslint-disable-next-line no-debugger
-      debugger;
+      // debugger;
     };
   }
 
   componentDidMount() {
     console.log('Root ComponentDidMount');
+
+    if (util.hasLsTodos()) {
+      this.setState({
+        todolistLS: util.loadLocalStorageTodoList(),
+      });
+    }
   }
 
   render() {
     console.log('Root render');
     const { todolistLS } = this.state;
-    console.log(todolistLS);
-    console.log(util.loadLocalStorageTodoList());
     // this.init();
 
     return (

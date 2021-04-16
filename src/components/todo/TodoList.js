@@ -7,23 +7,36 @@ class TodoLists extends Component {
     super(props);
 
     this.state = {};
-    this.setEvent = () => {
+    this.setEvent = (itemContainerElements) => {
       if (!util.hasLsTodos()) { return; }
 
-      const ItemContainerElements = document.querySelectorAll('.item-container');
-
-      events.initTodoListEvents(ItemContainerElements);
+      events.initTodoListEvents(itemContainerElements);
     };
   }
 
   componentDidMount() {
     console.log('TodoList ComponentDidMount');
-    this.setEvent();
+    /*
+      첫번째 App.js가 Rendering 될때 props.list 가 null 이기 때문에 componentDidMount 에서 setEvent를 사용하지 않으며,
+      App.js에서 componentDidMount 에서 setState에서 todolistLS를 초기화 시키며 re-rendering이 된다.
+      그때 todoList componentDidUpdate에서 setEvent가 실행되도록 한다.
+    */
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     console.log('TodoList ComponentDidUpdate');
-    this.setEvent();
+    const itemContainerElements = document.querySelectorAll('.item-container');
+    const { lists } = this.props;
+
+    if (prevProps.lists === null) {
+      this.setEvent(itemContainerElements);
+
+      return;
+    }
+    if (prevProps.lists.todolistLastIDX !== lists.todolistLastIDX) {
+      const itemContainerElement = itemContainerElements[lists.todolistLastIDX - 1];
+      this.setEvent([itemContainerElement]);
+    }
   }
 
   render() {
@@ -31,6 +44,7 @@ class TodoLists extends Component {
     const getLists = read.getListElement(lists, deleteListFunc);
     console.log(this.props);
     console.log('TodoList render');
+    console.log(deleteListFunc);
 
     return (
       <div className="item-content">

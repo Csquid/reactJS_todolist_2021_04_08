@@ -30,6 +30,11 @@ class TodoInput extends Component {
     console.log('TodoInput ComponentDidMount');
   }
 
+  componentDidUpdate() {
+    console.log('TodoInput ComponentDidMount');
+    return false;
+  }
+
   render() {
     console.log('TodoInput render');
 

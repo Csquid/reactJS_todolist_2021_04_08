@@ -1,6 +1,6 @@
 import { util } from 'js/modules';
 
-function setCreate(addedTodoLsOBJ) {
+function setLocalStorage(addedTodoLsOBJ) {
   localStorage.setItem(util.TodoLS, JSON.stringify(addedTodoLsOBJ));
   // read.getTodoListElement
 }
@@ -17,7 +17,7 @@ export function todos(todoText) { // 만약 Local Storage todolist 가 비었을
       todolist: [tempTodoList],
     };
 
-    setCreate(todoLSBeAdd);
+    setLocalStorage(todoLSBeAdd);
     return todoLSBeAdd;
   }
 
@@ -32,8 +32,8 @@ export function todos(todoText) { // 만약 Local Storage todolist 가 비었을
   tempTodoListDatas.todolistLastIDX = addedTodoLastIDX;
   tempTodoListDatas.todolist.push(todoLSBeAdd);
 
-  setCreate(tempTodoListDatas);
-  return null;
+  setLocalStorage(tempTodoListDatas);
+  return tempTodoListDatas;
 }
 
 export default todos;

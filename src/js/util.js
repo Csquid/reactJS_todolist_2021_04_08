@@ -1,17 +1,5 @@
 export const TodoLS = 'todo';
 
-export function init() {
-  const todoOBJ = {
-    todolist: [
-      { id: 0, text: '11', check: true },
-      { id: 1, text: '22', check: false },
-      { id: 2, text: '33', check: false },
-    ],
-    todolistLastIDX: 3,
-  };
-
-  localStorage.setItem(TodoLS, JSON.stringify(todoOBJ));
-}
 // Deep Clone Object
 export function clone(source) {
   const target = {};
@@ -31,6 +19,17 @@ export function clone(source) {
   }
   return target;
 }
+
+export function getListIDX(lsTodoListData, idx) {
+  // debugger;
+  for (let i = 0; i < lsTodoListData.length; i += 1) {
+    if (lsTodoListData[i].id === Number(idx)) {
+      return i;
+    }
+  }
+  return null;
+}
+
 export function loadLocalStorageTodoList() {
   /* Local Storage 에서 데이터 꺼내오기 */
   const todos = localStorage.getItem(TodoLS);

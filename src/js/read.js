@@ -14,7 +14,21 @@ export function getTodoListElement(todoOBJ, deleteListFunc) {
       <span className="todo-update">
         <i className="fas fa-pen-fancy" />
       </span>
-      <span className="todo-delete" style={{ display: deleteDisplay }} onKeyDown={deleteListFunc} role="button" tabIndex="0">
+      <span
+        className="todo-delete"
+        style={{ display: deleteDisplay }}
+        onClick={(e) => {
+          console.log(e.target);
+          console.log(deleteListFunc);
+          // deleteListFunc(1);
+
+          // eslint-disable-next-line no-debugger
+          debugger;
+        }}
+        onKeyDown={() => {}}
+        role="button"
+        tabIndex="0"
+      >
         <i className="far fa-trash-alt" />
       </span>
     </div>
