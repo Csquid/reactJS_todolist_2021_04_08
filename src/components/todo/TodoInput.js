@@ -6,7 +6,7 @@ class TodoInput extends Component {
     super(props);
     this.state = {};
     this.addClicked = (todoInputTextElement) => {
-      const { createTodo } = this.props;
+      const { createTodos } = this.props;
       const todoInputTemp = todoInputTextElement;
       // console.log(todoInputTemp);
 
@@ -16,7 +16,7 @@ class TodoInput extends Component {
         return;
       }
 
-      createTodo(todoInputTemp.value);
+      createTodos(todoInputTemp.value);
 
       todoInputTemp.value = '';
     };
@@ -55,7 +55,7 @@ class TodoInput extends Component {
 }
 
 TodoInput.propTypes = {
-  createTodo: PropTypes.func.isRequired,
+  createTodos: PropTypes.func.isRequired,
 };
 
 export default TodoInput;

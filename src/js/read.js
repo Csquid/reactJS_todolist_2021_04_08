@@ -1,7 +1,7 @@
 // import { deleteF } from 'js/modules';
 export const dummy = true;
 
-export function getListElement(datas, deleteListFunc) {
+export function getListElement(datas, funcOBJ) {
   if (datas === null) {
     return null;
   }
@@ -19,7 +19,14 @@ export function getListElement(datas, deleteListFunc) {
 
     todosArray.push(
       <div key={todoOBJ.id} className="item-container" data-id={todoOBJ.id}>
-        <input className="todo-checkbox" type="checkbox" defaultChecked={todoOBJ.check} />
+        <input
+          className="todo-checkbox"
+          type="checkbox"
+          defaultChecked={todoOBJ.check}
+          onClick={() => {
+            funcOBJ.update(todoOBJ.id);
+          }}
+        />
         <input className={checkStr} type="text" defaultValue={todoOBJ.text} readOnly />
         <span className="todo-update">
           <i className="fas fa-pen-fancy" />
@@ -27,11 +34,8 @@ export function getListElement(datas, deleteListFunc) {
         <span
           className="todo-delete"
           style={{ display: deleteDisplay }}
-          onClick={(e) => {
-            const idx = Number(e.currentTarget.parentElement.dataset.id);
-            // console.log(idx);
-
-            deleteListFunc(idx);
+          onClick={() => {
+            funcOBJ.delete(todoOBJ.id);
           }}
           onKeyDown={() => {}}
           role="button"

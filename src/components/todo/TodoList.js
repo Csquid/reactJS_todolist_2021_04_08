@@ -43,8 +43,12 @@ class TodoLists extends Component {
   render() {
     console.log('TodoList render');
 
-    const { lists, deleteListFunc } = this.props;
-    const getLists = read.getListElement(lists, deleteListFunc);
+    const { lists, deleteTodosFunc, updateTodosFunc } = this.props;
+    const funcOBJ = {
+      delete: deleteTodosFunc,
+      update: updateTodosFunc,
+    };
+    const getLists = read.getListElement(lists, funcOBJ);
 
     return (
       <div className="item-contet">
@@ -55,7 +59,8 @@ class TodoLists extends Component {
 }
 
 TodoLists.propTypes = {
-  deleteListFunc: PropTypes.func.isRequired,
+  deleteTodosFunc: PropTypes.func.isRequired,
+  updateTodosFunc: PropTypes.func.isRequired,
   // eslint-disable-next-line react/require-default-props
   lists: PropTypes.objectOf(
     PropTypes.oneOfType([

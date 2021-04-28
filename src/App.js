@@ -2,31 +2,33 @@ import React, { Component } from 'react';
 import Header from 'components/TodoHeader';
 import Add from 'components/todo/TodoInput';
 import List from 'components/todo/TodoList';
-import { create, deleteF, util } from 'js/modules';
+import {
+  create, update, deleteF, util,
+} from 'js/modules';
 import 'css/App.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // Local Storage todolist
       todolistLS: null,
     };
 
-    this.init = () => {
-      util.init();
-    };
-
-    this.deleteList = (idx) => {
-      console.log(idx);
+    this.createTodos = (todoText) => {
       this.setState({
-        todolistLS: deleteF.todos(idx),
+        todolistLS: create.todos(todoText),
       });
     };
 
-    this.createTodo = (todoText) => {
+    this.updateCheckedTodos = (idx) => {
       this.setState({
-        todolistLS: create.todos(todoText),
+        todolistLS: update.todos(idx),
+      });
+    };
+
+    this.deleteTodos = (idx) => {
+      this.setState({
+        todolistLS: deleteF.todos(idx),
       });
     };
   }
@@ -49,10 +51,11 @@ class App extends Component {
       <div className="App">
         <div className="floating-box">
           <Header title="Todos" />
-          <Add createTodo={this.createTodo} />
+          <Add createTodos={this.createTodos} />
           <List
             lists={todolistLS}
-            deleteListFunc={this.deleteList}
+            updateTodosFunc={this.updateCheckedTodos}
+            deleteTodosFunc={this.deleteTodos}
           />
         </div>
       </div>
