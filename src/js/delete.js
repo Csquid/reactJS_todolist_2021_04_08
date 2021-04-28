@@ -1,4 +1,4 @@
-import { util } from 'js/modules';
+import { create, util } from 'js/modules';
 
 export const dummy = true;
 
@@ -9,5 +9,9 @@ export function todos(idx) {
   // eslint-disable-next-line no-unused-vars
   const remove = tempTodoListDatas.todolist.splice(tempIDX, 1);
 
-  console.log(tempTodoListDatas);
+  console.log('tempTodoListDatas', tempTodoListDatas);
+  console.log('remove', remove);
+  create.setLocalStorage(tempTodoListDatas);
+
+  return tempTodoListDatas;
 }

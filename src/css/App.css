@@ -132,6 +132,7 @@ body {
     color: #464646;
     vertical-align: middle;
     cursor: pointer;
+    outline: none;
 }
 .todo-delete,
 .todo-update,

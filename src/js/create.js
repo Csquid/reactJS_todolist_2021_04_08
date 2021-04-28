@@ -1,6 +1,6 @@
 import { util } from 'js/modules';
 
-function setLocalStorage(addedTodoLsOBJ) {
+export function setLocalStorage(addedTodoLsOBJ) {
   localStorage.setItem(util.TodoLS, JSON.stringify(addedTodoLsOBJ));
   // read.getTodoListElement
 }

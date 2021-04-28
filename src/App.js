@@ -19,16 +19,15 @@ class App extends Component {
 
     this.deleteList = (idx) => {
       console.log(idx);
-      deleteF.todos(idx);
+      this.setState({
+        todolistLS: deleteF.todos(idx),
+      });
     };
 
     this.createTodo = (todoText) => {
       this.setState({
         todolistLS: create.todos(todoText),
       });
-
-      // eslint-disable-next-line no-debugger
-      // debugger;
     };
   }
 
@@ -45,7 +44,6 @@ class App extends Component {
   render() {
     console.log('Root render');
     const { todolistLS } = this.state;
-    // this.init();
 
     return (
       <div className="App">

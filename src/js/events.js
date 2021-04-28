@@ -2,6 +2,8 @@
 export const dummy = true;
 export const initTodoListEvents = (itemContainerElements) => {
   for (let i = 0; i < itemContainerElements.length; i += 1) {
+    // eslint-disable-next-line no-debugger
+    // debugger;
     const todoElementsChildren = itemContainerElements[i].children;
     const todoElementOBJ = {
       checkbox: null,

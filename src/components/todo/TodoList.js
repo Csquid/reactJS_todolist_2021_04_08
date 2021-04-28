@@ -33,21 +33,21 @@ class TodoLists extends Component {
 
       return;
     }
+
     if (prevProps.lists.todolistLastIDX !== lists.todolistLastIDX) {
-      const itemContainerElement = itemContainerElements[lists.todolistLastIDX - 1];
+      const itemContainerElement = itemContainerElements[itemContainerElements.length - 1];
       this.setEvent([itemContainerElement]);
     }
   }
 
   render() {
+    console.log('TodoList render');
+
     const { lists, deleteListFunc } = this.props;
     const getLists = read.getListElement(lists, deleteListFunc);
-    console.log(this.props);
-    console.log('TodoList render');
-    console.log(deleteListFunc);
 
     return (
-      <div className="item-content">
+      <div className="item-contet">
         {getLists}
       </div>
     );
